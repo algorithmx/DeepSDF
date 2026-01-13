@@ -1,0 +1,11 @@
+*.zip
+__pycache__/
+data/
+ShapeNetCore.v2/
+*.ply
+*.png
+*.jpg
+*.JPG
+*.bmp
+*.xyz
+*.tga

@@ -46,13 +46,19 @@ class MultipleMeshFileError(RuntimeError):
 
 
 def find_mesh_in_directory(shape_dir):
-    mesh_filenames = list(glob.iglob(shape_dir + "/**/*.obj")) + list(
-        glob.iglob(shape_dir + "/*.obj")
+    mesh_filenames = (
+        list(glob.iglob(shape_dir + "/**/*.obj"))
+        + list(glob.iglob(shape_dir + "/*.obj"))
+        + list(glob.iglob(shape_dir + "/**/*.ply"))
+        + list(glob.iglob(shape_dir + "/*.ply"))
+        + list(glob.iglob(shape_dir + "/**/*.stl"))
+        + list(glob.iglob(shape_dir + "/*.stl"))
     )
     if len(mesh_filenames) == 0:
         raise NoMeshFileError()
     elif len(mesh_filenames) > 1:
         raise MultipleMeshFileError()
+    # Return the full path - the caller will use it directly
     return mesh_filenames[0]
 
 
